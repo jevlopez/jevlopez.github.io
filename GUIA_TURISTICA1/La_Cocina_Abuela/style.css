@@ -1,0 +1,424 @@
+/* Estilos Generales y Reseteo */
+:root {
+    --primary-color: #A0522D; /* Tono terroso/elegante (Sienna) */
+    --secondary-color: #333333; /* Gris oscuro para texto */
+    --text-light: #f4f4f4;
+    --background-dark: #1f1f1f;
+    --background-light: #ffffff;
+    --accent-color: #b8860b; /* Goldenrod para acentos */
+    --font-serif: 'Playfair Display', serif;
+    --font-sans: 'Montserrat', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-sans);
+    line-height: 1.6;
+    color: var(--secondary-color);
+    background-color: var(--background-light);
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: color 0.3s;
+}
+
+a:hover {
+    color: var(--primary-color);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+section {
+    padding: 80px 0;
+    min-height: 100vh;
+}
+
+h1, h2 {
+    font-family: var(--font-serif);
+    text-align: center;
+    margin-bottom: 40px;
+    color: var(--secondary-color);
+}
+
+h1 { font-size: 3.5rem; }
+h2 { font-size: 2.5rem; }
+
+/* 2. Navbar Estilos */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: transparent;
+    padding: 15px 0;
+    z-index: 1000;
+    transition: background-color 0.4s, box-shadow 0.4s;
+}
+
+/* Estilo que se añade con JavaScript al hacer scroll */
+.navbar.scrolled {
+    background-color: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.navbar.scrolled .logo,
+.navbar.scrolled .nav-links a {
+    color: var(--secondary-color);
+}
+
+.nav-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-family: var(--font-serif);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-light); /* Color inicial para el hero */
+}
+
+.nav-links a {
+    margin-left: 30px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-light); /* Color inicial para el hero */
+}
+
+/* Menú Hamburguesa (oculto por defecto en desktop) */
+.hamburger {
+    display: none;
+    cursor: pointer;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 30px;
+    height: 25px;
+}
+
+.hamburger span {
+    display: block;
+    width: 100%;
+    height: 3px;
+    background-color: var(--text-light); /* Color inicial para el hero */
+    transition: all 0.3s ease;
+}
+
+.navbar.scrolled .hamburger span {
+    background-color: var(--secondary-color);
+}
+
+/* 1. Hero Section */
+.hero-section {
+    position: relative;
+    height: 100vh;
+    background: url('images/hero-bg.jpg') center/cover no-repeat; /* Usar una imagen elegante de fondo */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--text-light);
+    text-align: center;
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4); /* Oscurece la imagen para mejor legibilidad */
+    z-index: 1;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    padding: 20px;
+}
+
+.hero-content h1 {
+    font-size: 5rem;
+    color: var(--text-light);
+    margin-bottom: 10px;
+}
+
+.hero-content .subtitle {
+    font-size: 1.5rem;
+    font-weight: 300;
+    margin-bottom: 40px;
+    letter-spacing: 2px;
+}
+
+.cta-button {
+    display: inline-block;
+    background-color: var(--primary-color);
+    color: var(--text-light);
+    padding: 15px 30px;
+    border: 2px solid var(--primary-color);
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 1px;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+.cta-button:hover {
+    background-color: transparent;
+    border-color: var(--text-light);
+    color: var(--text-light);
+}
+
+/* 3. Nosotros Section */
+.about-section {
+    background-color: var(--background-light);
+    text-align: center;
+}
+
+.about-section p {
+    max-width: 800px;
+    margin: 20px auto;
+    font-size: 1.1rem;
+    line-height: 1.8;
+}
+
+/* 4. Servicios Section (CSS Grid) */
+.services-section {
+    background-color: #f8f8f8;
+}
+
+.dish-grid {
+    display: grid;
+    /* Configuración 3x3 en desktop */
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 15px;
+    margin-top: 40px;
+}
+
+.dish-card {
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+}
+
+.dish-card:hover {
+    transform: scale(1.02);
+}
+
+.dish-card img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    display: block;
+    transition: opacity 0.5s;
+}
+
+/* 5. Formulario Section (Estilos Llamativos) */
+.form-section {
+    background-color: var(--background-dark);
+    color: var(--text-light);
+}
+
+.form-section h2 {
+    color: var(--text-light);
+}
+
+.reservation-form {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 40px;
+    background-color: #2a2a2a; /* Fondo más oscuro para contraste */
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+.form-group {
+    margin-bottom: 25px;
+    position: relative;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: var(--accent-color);
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #555;
+    border-radius: 4px;
+    background-color: #3e3e3e;
+    color: var(--text-light);
+    font-size: 1rem;
+    transition: border-color 0.3s;
+}
+
+.form-group input:focus {
+    border-color: var(--primary-color);
+    outline: none;
+}
+
+.submit-button {
+    width: 100%;
+    padding: 15px;
+    background-color: var(--primary-color);
+    color: var(--text-light);
+    border: none;
+    border-radius: 4px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.3s, opacity 0.3s;
+    margin-top: 20px;
+}
+
+.submit-button:hover {
+    background-color: var(--accent-color);
+}
+
+/* Estilos de Validación */
+.form-group.error input {
+    border-color: red !important;
+}
+
+.error-message {
+    display: block;
+    color: red;
+    font-size: 0.9rem;
+    margin-top: 5px;
+    height: 18px; /* Para evitar saltos de layout */
+}
+
+.success-message {
+    text-align: center;
+    color: #4CAF50;
+    font-weight: 600;
+    padding: 15px;
+    background-color: #e8f5e9;
+    border-radius: 4px;
+    margin-top: 20px;
+}
+
+
+/* 6. Footer */
+.footer {
+    background-color: var(--secondary-color);
+    color: var(--text-light);
+    padding: 40px 0;
+    text-align: center;
+}
+
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.social-links a {
+    margin: 0 15px;
+    font-size: 1rem;
+    text-transform: uppercase;
+    font-weight: 300;
+}
+
+.footer p {
+    margin-top: 15px;
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
+
+.footer .credits {
+    margin-top: 5px;
+    font-size: 0.8rem;
+}
+
+/* Media Queries para Responsividad */
+@media (max-width: 900px) {
+    .dish-grid {
+        /* Configuración 2x2 en tablets */
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    /* Navbar móvil */
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 100%; /* Debajo del header */
+        left: 0;
+        width: 100%;
+        background-color: var(--background-dark);
+        text-align: center;
+        padding: 10px 0;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+
+    .nav-links a {
+        margin: 10px 0;
+        color: var(--text-light);
+    }
+
+    .hamburger {
+        display: flex;
+    }
+    
+    .navbar.scrolled .hamburger span {
+        background-color: var(--secondary-color);
+    }
+    
+    .navbar.scrolled .nav-links {
+        background-color: var(--background-light);
+    }
+
+    .navbar.scrolled .nav-links a {
+        color: var(--secondary-color);
+    }
+    
+    /* Hero */
+    .hero-content h1 {
+        font-size: 3rem;
+    }
+    
+    .hero-content .subtitle {
+        font-size: 1.2rem;
+    }
+
+    /* Servicios: 1 columna en móvil */
+    .dish-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .dish-card img {
+        height: 250px;
+    }
+
+    section {
+        padding: 60px 0;
+    }
+
+    h1 { font-size: 3rem; }
+    h2 { font-size: 2rem; }
+}
